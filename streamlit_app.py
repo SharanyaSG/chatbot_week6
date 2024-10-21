@@ -40,7 +40,8 @@ else:
             st.markdown(prompt)
 
         # Generate a response using the OpenAI API.
-        stream = client.chat.completions.create(
+        generator("Damascus is a", max_length=20, num_return_sequences=10, truncation=True)
+        
             model="gpt-3.5-turbo",
             messages=[
                 {"role": m["role"], "content": m["content"]}
@@ -48,7 +49,7 @@ else:
             ],
             stream=True,
         )
-
+        
         # Stream the response to the chat using `st.write_stream`, then store it in 
         # session state.
         with st.chat_message("assistant"):
